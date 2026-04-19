@@ -1,6 +1,7 @@
+const path = require("path");
+const express = require("express");
 const app = require("./app");
 const { pool } = require("./config/database");
-const path = require("path");
 
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(__dirname, "..", "..", "frontend", "dist");
