@@ -53,55 +53,60 @@ CodeSage/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd CodeSage
    ```
 
 2. **Set up the database**
+
    ```bash
    # Create PostgreSQL database
    createdb codesage
-   
+
    # Navigate to Node.js backend
    cd backend/node
-   
+
    # Copy environment file and configure
    cp .env.example .env
    # Edit .env with your database credentials
-   
+
    # Install dependencies and run migrations
    npm install
    npm run migrate
    ```
 
 3. **Train the ML Model (Required)**
+
    ```bash
    cd backend/fastapi
-   
+
    # Create virtual environment
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
-   
+
    # Install dependencies
    pip install -r requirements.txt
-   
+
    # Train the Random Forest model
    python train_model.py --repos 50 --output ../model/random_forest_model.pkl
-   
+
    # This will fetch Python repositories from GitHub and train the model
    # You can adjust the number of repositories with --repos flag
    ```
 
 4. **Start the backend services**
-   
+
    **Node.js Backend:**
+
    ```bash
    cd backend/node
    npm run dev
    ```
-   
+
    **FastAPI ML Service:**
+
    ```bash
    cd backend/fastapi
    source venv/bin/activate  # On Windows: venv\Scripts\activate
@@ -109,6 +114,7 @@ CodeSage/
    ```
 
 5. **Start the frontend**
+
    ```bash
    cd frontend
    npm install
@@ -131,11 +137,13 @@ python train_model.py --help
 ```
 
 **Training Options:**
+
 - `--repos 100`: Number of GitHub repositories to fetch for training
 - `--output path/to/model.pkl`: Custom output path for the trained model
 - `--data-only`: Only extract training data without training (saves to CSV)
 
 **Example:**
+
 ```bash
 # Train with 100 repositories
 python train_model.py --repos 100 --output ../model/random_forest_model.pkl
@@ -149,6 +157,7 @@ python train_model.py --repos 50 --data-only
 ### Environment Variables
 
 **Backend (.env):**
+
 ```env
 PORT=5000
 NODE_ENV=development
@@ -159,6 +168,7 @@ FRONTEND_URL=http://localhost:3000
 ```
 
 **FastAPI (.env):**
+
 ```env
 MODEL_PATH=../model/random_forest_model.pkl
 HOST=0.0.0.0
@@ -166,6 +176,7 @@ PORT=8000
 ```
 
 **Frontend (.env):**
+
 ```env
 VITE_API_URL=http://localhost:5000/api
 ```
@@ -216,6 +227,7 @@ The system uses a Random Forest classifier trained on real Python code repositor
 ### Training Metrics
 
 The training script provides:
+
 - Training and test accuracy
 - Cross-validation scores
 - Classification report (precision, recall, F1-score)
@@ -235,16 +247,19 @@ The training script provides:
 ## 🔌 API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/signup` - User registration
 - `POST /api/auth/login` - User login
 - `GET /api/auth/profile` - Get user profile
 
 ### Analysis
+
 - `POST /api/analysis` - Analyze code or repository
 - `GET /api/analyze/health` - Health check with model status
 - `GET /api/model/info` - Get detailed model information
 
 ### History
+
 - `GET /api/history` - Get user's analysis history
 - `GET /api/history/:id` - Get specific analysis details
 - `DELETE /api/history/:id` - Delete analysis record
@@ -262,6 +277,7 @@ The training script provides:
 ## 🛠️ Technology Stack
 
 ### Frontend
+
 - **React 18** - UI framework
 - **Vite** - Build tool
 - **TailwindCSS** - Styling
@@ -272,6 +288,7 @@ The training script provides:
 - **Lucide React** - Icons
 
 ### Backend
+
 - **Node.js** - Runtime
 - **Express** - Web framework
 - **PostgreSQL** - Database
@@ -280,6 +297,7 @@ The training script provides:
 - **Axios** - HTTP client
 
 ### ML Service
+
 - **FastAPI** - Python web framework
 - **Scikit-learn** - Machine learning
 - **Pandas** - Data manipulation
@@ -389,4 +407,4 @@ The system is actively maintained with regular updates:
 
 ---
 
-Built with ❤️ by the CodeSage Team
+Built with ❤️ by Ebrima Gajaga under the supervision of Mrs. Pritibala Patel
