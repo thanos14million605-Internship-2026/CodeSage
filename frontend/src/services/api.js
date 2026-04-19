@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 const isProduction = true;
 const API_BASE_URL =
   isProduction === true
-    ? "https://codesage-h1pb.onrender.com"
+    ? "https://codesage-h1pb.onrender.com/api"
     : "http://localhost:5000/api";
 
 const api = axios.create({
