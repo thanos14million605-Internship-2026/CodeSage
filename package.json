@@ -1,0 +1,32 @@
+{
+  "name": "code-sage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "backend/node/server.js",
+  "scripts": {
+    "dev": "nodemon backend/node/server.js",
+    "start": "node backend/node/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "keywords": [],
+  "author": "Ebrima Gajaga",
+  "type": "commonjs",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.1.0",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-rate-limit": "^7.1.5",
+    "express-validator": "^7.0.1",
+    "axios": "^1.6.2",
+    "multer": "^1.4.5-lts.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
