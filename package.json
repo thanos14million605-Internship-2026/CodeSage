@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon backend/node/server.js",
     "start": "node backend/node/server.js",
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build": "npm install && npm install --prefix backend && npm install --prefix frontend && npm install --prefix frontend --include=dev && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "Ebrima Gajaga",
