@@ -39,6 +39,8 @@ BugSeer/
 │       └── requirements.txt
 └── model/                   # ML model files
     └── random_forest_model.pkl
+
+
 ```
 
 ## 🚀 Quick Start
@@ -46,7 +48,7 @@ BugSeer/
 ### Prerequisites
 
 - Node.js (v18 or higher)
-- Python (v3.8 or higher)
+- Python (v3.10 or higher)
 - PostgreSQL
 - Git
 
@@ -63,13 +65,13 @@ BugSeer/
 
    ```bash
    # Create PostgreSQL database
-   createdb bugseerdb
+   create database bugseerdb
 
    # Navigate to Node.js backend
    cd backend/node
 
    # Copy environment file and configure
-   cp .env.example .env
+   cp .env
    # Edit .env with your database credentials
 
    # Install dependencies and run migrations
@@ -82,15 +84,11 @@ BugSeer/
    ```bash
    cd backend/fastapi
 
-   # Create virtual environment
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-
    # Install dependencies
    pip install -r requirements.txt
 
-   # Train the Random Forest model
-   python train_model.py --repos 50 --output ../model/random_forest_model.pkl
+   # Train the Random Forest model - model/BugSeer_Model.ipynb
+   It is recommended to train the model on Google Collab, and download the trained model as .pkl file in the model/ folder.
 
    # This will fetch Python repositories from GitHub and train the model
    # You can adjust the number of repositories with --repos flag
@@ -109,7 +107,6 @@ BugSeer/
 
    ```bash
    cd backend/fastapi
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
    ```
 
@@ -118,39 +115,14 @@ BugSeer/
    ```bash
    cd frontend
    npm install
-   cp .env.example .env
+   cp .env
    npm run dev
    ```
 
 6. **Access the application**
-   - Frontend: http://localhost:3000
+   - Frontend: http://localhost:5173
    - Backend API: http://localhost:5000
    - ML API: http://localhost:8000
-
-### Model Training
-
-The system requires a trained Random Forest model to function. Use the training script:
-
-```bash
-cd backend/fastapi
-python train_model.py --help
-```
-
-**Training Options:**
-
-- `--repos 100`: Number of GitHub repositories to fetch for training
-- `--output path/to/model.pkl`: Custom output path for the trained model
-- `--data-only`: Only extract training data without training (saves to CSV)
-
-**Example:**
-
-```bash
-# Train with 100 repositories
-python train_model.py --repos 100 --output ../model/random_forest_model.pkl
-
-# Extract data only for manual inspection
-python train_model.py --repos 50 --data-only
-```
 
 ## 🔧 Configuration
 
@@ -162,9 +134,10 @@ python train_model.py --repos 50 --data-only
 PORT=5000
 NODE_ENV=development
 DATABASE_URL=postgresql://username:password@localhost:5432/bugseerdb
-JWT_SECRET=your-super-secret-jwt-key-here
+DATABASE_URL_PROD=...
+JWT_SECRET=...
 FASTAPI_URL=http://localhost:8000
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173
 ```
 
 **FastAPI (.env):**
@@ -310,10 +283,10 @@ The training script provides:
 
 The system is designed for deployment on platforms like Render, Vercel, or AWS:
 
-1. **Frontend**: Deploy to Vercel or Netlify
+1. **Frontend**: Deploy to Render, Vercel or Netlify
 2. **Backend API**: Deploy to Render or AWS ECS
 3. **ML Service**: Deploy to Render or AWS Lambda
-4. **Database**: Use managed PostgreSQL (AWS RDS, Render PostgreSQL)
+4. **Database**: Use managed PostgreSQL (AWS RDS, Render PostgreSQL, Supabase)
 
 ### Environment Setup
 
@@ -322,48 +295,6 @@ The system is designed for deployment on platforms like Render, Vercel, or AWS:
 3. Deploy ML model to accessible storage
 4. Configure CORS for production domains
 5. Set up SSL certificates
-
-## 🧪 Testing
-
-### Running Tests
-
-```bash
-# Frontend tests
-cd frontend
-npm test
-
-# Backend tests
-cd backend/node
-npm test
-
-# ML service tests
-cd backend/fastapi
-pytest
-```
-
-### Test Coverage
-
-- Unit tests for core functionality
-- Integration tests for API endpoints
-- Model validation tests
-- UI component tests
-
-## 📈 Performance
-
-### Optimization Features
-
-- **Code Splitting**: Lazy loading of React components
-- **Caching**: Redis for API response caching
-- **Database Indexing**: Optimized queries
-- **Image Optimization**: Compressed assets
-- **CDN**: Static asset delivery
-
-### Monitoring
-
-- Application performance monitoring
-- Error tracking and logging
-- Database query optimization
-- API response time tracking
 
 ## 🔒 Security
 
@@ -375,35 +306,6 @@ pytest
 - **Rate Limiting**: API abuse prevention
 - **Input Validation**: Comprehensive input sanitization
 - **SQL Injection Prevention**: Parameterized queries
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
-
-For support and questions:
-
-- Create an issue in the repository
-- Check the documentation
-- Review the FAQ section
-
-## 🔄 Updates
-
-The system is actively maintained with regular updates:
-
-- **Model Retraining**: Periodic model updates with new data
-- **Feature Enhancements**: Continuous improvement of analysis capabilities
-- **Security Updates**: Regular security patches
-- **Performance Optimization**: Ongoing performance improvements
 
 ---
 
