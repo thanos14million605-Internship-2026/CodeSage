@@ -24,7 +24,7 @@ app.include_router(analysis_router, prefix="/api", tags=["analysis"])
 
 @app.get("/")
 async def root():
-    return {"message": "CodeSage ML API is running"}
+    return {"message": "BugSeer ML API is running"}
 
 @app.get("/health")
 async def health_check():

@@ -153,36 +153,36 @@ class MLService:
         recommendations = []
         
         if risk_score > 0.8:
-            recommendations.append("🚨 High risk detected! Immediate refactoring recommended")
+            recommendations.append("High risk detected! Immediate refactoring recommended")
         elif risk_score > 0.6:
-            recommendations.append("⚠️ Moderate risk. Consider code improvements")
+            recommendations.append("Moderate risk. Consider code improvements")
         elif risk_score > 0.4:
-            recommendations.append("📊 Low to moderate risk. Monitor and optimize")
+            recommendations.append("Low to moderate risk. Monitor and optimize")
         else:
-            recommendations.append("✅ Low risk detected. Code quality appears good")
+            recommendations.append("Low risk detected. Code quality appears good")
         
         # Feature-specific recommendations based on importance
         if feature_importance:
             most_important = max(feature_importance.items(), key=lambda x: x[1])
             
             if most_important[0] == 'cyclomatic_complexity' and features['cyclomatic_complexity'] > 8:
-                recommendations.append("🔧 Reduce cyclomatic complexity by breaking down complex functions")
+                recommendations.append("Reduce cyclomatic complexity by breaking down complex functions")
             
             if most_important[0] == 'nesting_depth' and features['nesting_depth'] > 2:
-                recommendations.append("📝 Reduce nesting depth using early returns and helper functions")
+                recommendations.append("Reduce nesting depth using early returns and helper functions")
             
             if most_important[0] == 'avg_function_length' and features['avg_function_length'] > 30:
-                recommendations.append("✂️ Break down long functions into smaller, focused units")
+                recommendations.append("Break down long functions into smaller, focused units")
         
         # General recommendations based on feature values
         if features['loc'] > 150:
             recommendations.append("📁 Consider splitting large files into focused modules")
         
         if features['num_imports'] > 15:
-            recommendations.append("📦 Review imports for potential dependencies reduction")
+            recommendations.append("Review imports for potential dependencies reduction")
         
         if features['num_classes'] > 5:
-            recommendations.append("🏗️ Consider applying Single Responsibility Principle to classes")
+            recommendations.append("Consider applying Single Responsibility Principle to classes")
         
         return recommendations
     
