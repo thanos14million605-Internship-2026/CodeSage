@@ -1,4 +1,4 @@
-# BugSeer - AI-Powered Code Analysis & Bug Risk Prediction
+# BugSeer - Research on Code Analysis & Bug Risk Prediction at the Source Code Level
 
 BugSeer is a production-grade AI-powered system that analyzes Python code to predict potential bugs and assess code quality. Built with modern web technologies and machine learning, it provides developers with actionable insights to improve their code.
 
